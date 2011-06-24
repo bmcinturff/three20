@@ -15,6 +15,7 @@
 //
 
 #import "Three20UI/TTTableLinkedItem.h"
+#import "Three20UI/TTTableTextItem.h"
 
 // Core
 #import "Three20Core/TTCorePreprocessorMacros.h"
@@ -29,18 +30,27 @@
 @synthesize accessoryURL  = _accessoryURL;
 @synthesize delegate      = _delegate;
 @synthesize selector      = _selector;
-
+@synthesize query	  = _query;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
   TT_RELEASE_SAFELY(_URL);
   TT_RELEASE_SAFELY(_accessoryURL);
+  TT_RELEASE_SAFELY(_query);
   _delegate = nil;
   _selector = nil;
 
   [super dealloc];
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
++ (id)itemWithText:(NSString*)text URL:(NSString*)URL query:(NSDictionary*) query {
+  TTTableTextItem* item = [[[self alloc] init] autorelease];
+  item.text = text;
+  item.URL = URL;
+  item.query = query;
+  return item;
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////

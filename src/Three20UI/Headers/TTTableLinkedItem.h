@@ -22,6 +22,7 @@
   // be invoked.
   NSString* _URL;
   NSString* _accessoryURL;
+  NSDictionary* _query;
 
   id        _delegate;
   SEL       _selector;
@@ -31,5 +32,7 @@
 @property (nonatomic, copy)   NSString* accessoryURL;
 @property (nonatomic, assign) id        delegate;
 @property (nonatomic, assign) SEL       selector;
+@property (nonatomic, copy) NSDictionary* query;
 
++(id)itemWithText:(NSString*)text URL:(NSString*)URL query:(NSDictionary*)query;
 @end
