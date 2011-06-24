@@ -23,6 +23,7 @@
 #import "Three20UI/TTTableHeaderView.h"
 #import "Three20UI/TTTableView.h"
 #import "Three20UI/TTStyledTextLabel.h"
+#import "Three20UINavigator/TTURLAction.h"
 
 // - Table Items
 #import "Three20UI/TTTableItem.h"
@@ -126,8 +127,8 @@
   if ([object isKindOfClass:[TTTableLinkedItem class]]) {
     TTTableLinkedItem* item = object;
     if (item.URL && [_controller shouldOpenURL:item.URL]) {
-      TTOpenURLFromView(item.URL, tableView);
-
+      //TTOpenURLFromView(item.URL, tableView);
+      [[TTNavigator navigator] openURLAction:[[[TTURLAction actionWithURLPath:item.URL]applyQuery:item.query]applyAnimated:YES]];
     } else if (item.delegate && item.selector) {
       [item.delegate performSelector:item.selector withObject:object];
     }
